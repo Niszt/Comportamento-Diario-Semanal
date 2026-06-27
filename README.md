@@ -1,5 +1,9 @@
 # Gerenciador de Rotina Semanal - Padrao Strategy
 
+# Alunos
+- Rafael Freire Machado Gonçalves
+- Nicolas 
+
 Este projeto em Python implementa um gerenciador de rotina utilizando conceitos de Orientacao a Objetos. O objetivo principal é demonstrar a aplicação de padroes de projeto para resolver o problema de delegacao de comportamentos dinamicos, eliminando completamente o uso de cadeias extensas de condicionais (`if/elif/else`).
 
 ##  Funcionalidades
@@ -28,9 +32,9 @@ python main.py
 
 
 1. Como evitar verificações repetidas de valores nulos no código principal?
-R: usando o null object pattern. e so criar uma classe com comportamento neutro que implementa a mesma interface, e retornar ela no lugar de um valor nulo. 
+R: Podemos criar um objeto padrão que é retornado sempre que a requisição não acontece com sucesso. Esse objeto implementa a mesma interface de estratégia do dia porém com mensagem e comportamento igual a uma estratégia válida para não quebrar o fluxo da aplicação. Assim não precisamos de repetidas verificações de nulidade de requisições.  
 2. Qual padrão de projeto pode ser utilizado para representar a ausência de uma estratégia de
 forma segura?
-R:
+R: A resposta anterior descreve o Null Object. Um objeto com comportamento igual a um objeto válido mas que representa uma instância inválida e não quebra o fluxo da aplicação.
 3. Explique brevemente como esse padrão seria incorporado à solução.
-R:
+R:	Utilizando os dicionários de python, é fácil aplicar a solução. Implementamos uma classe `GerenciadorRotina` que tem um atributo `estrategias`, um dicionário de estratégias onde a chave é uma string que representa o dia da semana e o valor é um objeto estratégia. O atributo `estrategias` tem um método `get(key: str, default=EstrategiaInvalida())` que retorna um valor do dicionário dada uma chave ou um valor padrão caso a chave não exista. Colocando o Null Object como padrão, removemos a necessidade de verificações de objetos nulos.
