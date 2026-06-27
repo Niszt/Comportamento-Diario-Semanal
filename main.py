@@ -129,3 +129,11 @@ if __name__ == "__main__":
         informacao="Revisar código do padrão Strategy"
     )
     print(saida_automatica)
+    
+    saida_manual2 = gerenciador.executar_rotina(
+        usuario="Rafael",
+        dia_semana="dia-que-nao-existe",
+        informacao="Fazer pull request na atividade"
+    )
+
+    print(saida_manual2)
