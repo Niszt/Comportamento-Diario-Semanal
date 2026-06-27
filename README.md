@@ -29,7 +29,7 @@ Este projeto foi desenhado com base em boas praticas de arquitetura de software,
 
 ```bash
 python main.py
-
+```
 
 1. Como evitar verificações repetidas de valores nulos no código principal?
 R: Podemos criar um objeto padrão que é retornado sempre que a requisição não acontece com sucesso. Esse objeto implementa a mesma interface de estratégia do dia porém com mensagem e comportamento igual a uma estratégia válida para não quebrar o fluxo da aplicação. Assim não precisamos de repetidas verificações de nulidade de requisições.  
