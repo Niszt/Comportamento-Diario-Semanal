@@ -48,10 +48,10 @@ class EstrategiaQuintaFeira(EstrategiaDia):
 class EstrategiaInvalida(EstrategiaDia):
     @property
     def prioridade(self) -> str:
-        pass
+        return "INVÁLIDA"
         
     def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
-        pass
+        return f"Estratégia para {dia_semana} inexistente."
     
     
 class GerenciadorRotina:
