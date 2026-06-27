@@ -1,59 +1,61 @@
 from abc import ABC, abstractmethod
+from datetime import datetime 
 
 class EstrategiaDia(ABC):
-    
     @property
     @abstractmethod
     def prioridade(self) -> str:
         pass
-
     @abstractmethod
     def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
         pass
 
 
 class EstrategiaSegundaFeira(EstrategiaDia):
-    
     @property
     def prioridade(self) -> str:
-        return "ALTA"  # Segunda Organiza as prioridades, planejamento e importante para qualquer projeto
+        return "ALTA"  
         
     def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
-        mensagem = f"organize suas prioridades. A meta e '{informacao}'."
+        return f"organize suas prioridades. A meta e '{informacao}'."
         
-        return (f"usuario: {usuario}\n"
-                f"dia consultado: {dia_semana}\n"
-                f"prioridade: {self.prioridade}\n"
-                f"mensagem: {mensagem}")
         
 class EstrategiaTercaFeira(EstrategiaDia):
-    prioridade = "ALTA"
+    @property  
+    def prioridade(self) -> str:
+        return "ALTA"
+        
     def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
-        mensagem = f"avance nas tarefas pendentes. A meta e '{informacao}'."
-        return (f"usuario: {usuario}\n"
-                f"dia consultado: {dia_semana}\n"
-                f"prioridade: {self.prioridade}\n"
-                f"mensagem: {mensagem}")
+        return f"avance nas tarefas pendentes. A meta e '{informacao}'."
+        
 class EstrategiaQuartaFeira(EstrategiaDia):
-    prioridade = "MeDIA"
+    @property
+    def prioridade(self) -> str:
+        return "MÉDIA"
+        
     def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
-        mensagem = f"dia de revisão, verifique o andamento da atividade '{informacao}'."
-        return (f"usuario: {usuario}\n"
-                f"dia consultado: {dia_semana}\n"
-                f"prioridade: {self.prioridade}\n"
-                f"mensagem: {mensagem}")
+        return f"dia de revisão, verifique o andamento da atividade '{informacao}'."
+        
 class EstrategiaQuintaFeira(EstrategiaDia):
-    prioridade = "BAIXA"
+    @property
+    def prioridade(self) -> str:
+        return "BAIXA"
+        
     def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
-        mensagem = f"colabore com alguem da equipe. inicie com '{informacao}'."
-        return (f"usuario: {usuario}\n"
-                f"dia consultado: {dia_semana}\n"
-                f"prioridade: {self.prioridade}\n"
-                f"mensagem: {mensagem}")
+        return f"colabore com alguem da equipe. inicie com '{informacao}'."
 
+
+class EstrategiaInvalida(EstrategiaDia):
+    @property
+    def prioridade(self) -> str:
+        pass
+        
+    def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
+        pass
+    
+    
 class GerenciadorRotina:
     def __init__(self):
-
         self._estrategias = {
             "segunda-feira": EstrategiaSegundaFeira(),
             "terça-feira": EstrategiaTercaFeira(),
@@ -61,7 +63,6 @@ class GerenciadorRotina:
             "quinta-feira": EstrategiaQuintaFeira()
         }
         
-        # Mapeamento do datetime.weekday()
         self._dias_pro_extenso = {
             0: "segunda-feira", 1: "terça-feira", 2: "quarta-feira",
             3: "quinta-feira", 4: "sexta-feira", 5: "sabado", 6: "domingo"
@@ -71,15 +72,37 @@ class GerenciadorRotina:
         """Requisito 1"""
         indice_dia = datetime.now().weekday()
         return self._dias_pro_extenso[indice_dia]
-
     
+    def executar_rotina(self, usuario: str, dia_semana: str, informacao: str) -> str:
+        dia_formatado = dia_semana.lower().strip()
+
+        estrategia = self._estrategias.get(dia_formatado, EstrategiaInvalida())
+        mensagem = estrategia.executar(usuario, informacao, dia_formatado)
+        
+        return (f"usuario: {usuario}\n"
+                f"dia consultado: {dia_formatado}\n"
+                f"prioridade: {estrategia.prioridade}\n" 
+                f"mensagem: {mensagem}\n"
+                f"{'-'*10}")
+
 
 if __name__ == "__main__":
-    estrategia_segunda = EstrategiaSegundaFeira()
-    resultado = estrategia_segunda.executar(
+    gerenciador = GerenciadorRotina()
+
+    saida_manual = gerenciador.executar_rotina(
         usuario="Nick", 
-        informacao="definir cronograma do projeto e dividir as funcoes do trabalho", 
-        dia_semana="segunda-feira"
+        dia_semana="quarta-feira", 
+        informacao="definir cronograma do projeto e dividir as funcoes do trabalho"
     )
     
-    print(resultado)
+    print(saida_manual)
+
+
+    print("\nconsulta automatica baseada no dia de hoje (Requisito 1)")
+    dia_hoje = gerenciador.obter_dia_atual_extenso()
+    saida_automatica = gerenciador.executar_rotina(
+        usuario="Nick", 
+        dia_semana=dia_hoje, 
+        informacao="Revisar código do padrão Strategy"
+    )
+    print(saida_automatica)
