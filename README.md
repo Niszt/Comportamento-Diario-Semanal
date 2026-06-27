@@ -2,7 +2,7 @@
 
 # Alunos
 - Rafael Freire Machado Gonçalves
-- Nicolas 
+- Nicolas de Mello Freitas
 
 Este projeto em Python implementa um gerenciador de rotina utilizando conceitos de Orientacao a Objetos. O objetivo principal é demonstrar a aplicação de padroes de projeto para resolver o problema de delegacao de comportamentos dinamicos, eliminando completamente o uso de cadeias extensas de condicionais (`if/elif/else`).
 
