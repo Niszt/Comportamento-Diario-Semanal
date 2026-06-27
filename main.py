@@ -21,40 +21,36 @@ class EstratégiaSegundaFeira(EstratégiaDia):
     def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
         mensagem = f"organize suas prioridades. A meta é '{informacao}'."
         
-        return (f"Usuário: {usuario}\n"
-                f"Dia consultado: {dia_semana}\n"
-                f"Prioridade: {self.prioridade}\n"
-                f"Mensagem: {mensagem}")
+        return (f"usuario: {usuario}\n"
+                f"dia consultado: {dia_semana}\n"
+                f"prioridade: {self.prioridade}\n"
+                f"mensagem: {mensagem}")
         
 class EstratégiaTercaFeira(EstratégiaDia):
     prioridade = "ALTA"
-    def executar(self, usuario: str, info_adicional: str) -> str:
-        return f"avance nas tarefas pendentes. A meta é '{info_adicional}'."
-
+    def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
+        mensagem = f"avance nas tarefas pendentes. A meta é '{informacao}'."
+        return (f"usuario: {usuario}\n"
+                f"dia consultado: {dia_semana}\n"
+                f"prioridade: {self.prioridade}\n"
+                f"mensagem: {mensagem}")
 class EstratégiaQuartaFeira(EstratégiaDia):
     prioridade = "MÉDIA"
-    def executar(self, usuario: str, info_adicional: str) -> str:
-        return f"dia de revisão, verifique o andamento da atividade '{info_adicional}'."
-
+    def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
+        mensagem = f"dia de revisão, verifique o andamento da atividade '{informacao}'."
+        return (f"usuario: {usuario}\n"
+                f"dia consultado: {dia_semana}\n"
+                f"prioridade: {self.prioridade}\n"
+                f"mensagem: {mensagem}")
 class EstratégiaQuintaFeira(EstratégiaDia):
     prioridade = "BAIXA"
-    def executar(self, usuario: str, info_adicional: str) -> str:
-        return f"colabore com alguém da equipe. inicie com '{info_adicional}'."
+    def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
+        mensagem = f"colabore com alguém da equipe. inicie com '{informacao}'."
+        return (f"usuario: {usuario}\n"
+                f"dia consultado: {dia_semana}\n"
+                f"prioridade: {self.prioridade}\n"
+                f"mensagem: {mensagem}")
 
-class EstratégiaSextaFeira(EstratégiaDia):
-    prioridade = "MÉDIA"
-    def executar(self, usuario: str, info_adicional: str) -> str:
-        return f"registre o que foi concluído. pendencia: '{info_adicional}'."
-
-class EstratégiaSabado(EstratégiaDia):
-    prioridade = "BAIXA"
-    def executar(self, usuario: str, info_adicional: str) -> str:
-        return f"realize estudo livre ou descanso. o que planejei '{info_adicional}'."
-
-class EstratégiaDomingo(EstratégiaDia):
-    prioridade = "MÉDIA"
-    def executar(self, usuario: str, info_adicional: str) -> str:
-        return f"planeje a próxima semana. foque nessa semana em '{info_adicional}'."
 
 if __name__ == "__main__":
     estrategia_segunda = EstratégiaSegundaFeira()
