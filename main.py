@@ -28,4 +28,11 @@ class EstratégiaSegundaFeira(EstratégiaDia):
 
 
 if __name__ == "__main__":
-    pass
+    estrategia_segunda = EstratégiaSegundaFeira()
+    resultado = estrategia_segunda.executar(
+        usuario="Nick", 
+        informacao="definir cronograma do projeto e dividir as funcoes do trabalho", 
+        dia_semana="segunda-feira"
+    )
+    
+    print(resultado)
