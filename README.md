@@ -25,3 +25,12 @@ Este projeto foi desenhado com base em boas praticas de arquitetura de software,
 
 ```bash
 python main.py
+
+
+1. Como evitar verificações repetidas de valores nulos no código principal?
+R: usando o null object pattern. e so criar uma classe com comportamento neutro que implementa a mesma interface, e retornar ela no lugar de um valor nulo. 
+2. Qual padrão de projeto pode ser utilizado para representar a ausência de uma estratégia de
+forma segura?
+R:
+3. Explique brevemente como esse padrão seria incorporado à solução.
+R:
