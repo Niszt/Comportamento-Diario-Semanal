@@ -60,6 +60,14 @@ class EstrategiaSabado(EstrategiaDia):
     def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
         return f"dia de recuperar as energias com {informacao}"
 
+class EstrategiaDomingo(EstrategiaDia):
+    @property
+    def prioridade(self) -> str:
+        return "BAIXA"
+
+    def executar(self, usuario: str, informacao: str, dia_semana: str) -> str:
+        return f"dia de se preparar para a semana. Comece com {informacao}"
+
 class EstrategiaInvalida(EstrategiaDia):
     @property
     def prioridade(self) -> str:
